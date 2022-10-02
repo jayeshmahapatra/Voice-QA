@@ -1,0 +1,4 @@
+git+https://github.com/openai/whisper.git
+torch
+whisper
+git+https://github.com/coqui-ai/TTS@dev#egg=TTS

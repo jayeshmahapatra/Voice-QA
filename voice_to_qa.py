@@ -1,10 +1,6 @@
-from cProfile import label
-from unittest import result
 import gradio as gr
-import urllib.request
 import re
 import os
-import requests
 import torch
 
 #Speech to text
