@@ -20,11 +20,13 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 
 # Whisper: Speech-to-text
 model = whisper.load_model("base", device = device)
-model_med = whisper.load_model("small", device = device)
+#model_med = whisper.load_model("small", device = device)
+model_med = whisper.load_model("medium", device = device)
 
 #Roberta Q&A
-model_name = "deepset/tinyroberta-squad2"
-nlp = pipeline('question-answering', model=model_name, tokenizer=model_name, device = 0)
+#model_name = "deepset/tinyroberta-squad2"
+model_name = "deepset/roberta-base-squad2"
+nlp = pipeline('question-answering', model=model_name, tokenizer=model_name, device = 0 if device == "cuda" else -1)
 
 #TTS
 tts_manager = ModelManager()
