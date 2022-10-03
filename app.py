@@ -124,7 +124,7 @@ with demo:
         """
     )
   gr.Markdown(
-        """Model pipeline consisting of - <br>- [**Whisper**](https://github.com/openai/whisper)for Speech-to-text, <br>- [**Roberta Base QA**](https://huggingface.co/deepset/roberta-base-squad2) for Question Answering, and <br>- [**CoquiTTS**](https://github.com/coqui-ai/TTS) for Text-To-Speech.
+        """Model pipeline consisting of - <br>- [**Whisper**](https://github.com/openai/whisper)for Speech-to-text, <br>- [**Tiny Roberta QA**](https://huggingface.co/deepset/tinyroberta-squad2) for Question Answering, and <br>- [**CoquiTTS**](https://github.com/coqui-ai/TTS) for Text-To-Speech.
         <br> Just type/paste your text in the context field, and then ask voice questions.""")
   with gr.Column():
     with gr.Row():
