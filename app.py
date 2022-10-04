@@ -38,7 +38,6 @@ print(model.device)
 
 # Whisper - speech-to-text
 def whisper_stt(audio):
-  print("Inside Whisper TTS")
   # load audio and pad/trim it to fit 30 seconds
   audio = whisper.load_audio(audio)
   audio = whisper.pad_or_trim(audio)
@@ -65,32 +64,32 @@ def whisper_stt(audio):
 
 # Coqui - Text-to-Speech
 def tts(text: str, model_name: str):
-    if len(text) > MAX_TXT_LEN:
-        text = text[:MAX_TXT_LEN]
-        print(f"Input text was cutoff since it went over the {MAX_TXT_LEN} character limit.")
-    print(text, model_name)
-    # download model
-    model_path, config_path, model_item = tts_manager.download_model(f"tts_models/{model_name}")
-    vocoder_name: Optional[str] = model_item["default_vocoder"]
-    # download vocoder
-    vocoder_path = None
-    vocoder_config_path = None
-    if vocoder_name is not None:
-        vocoder_path, vocoder_config_path, _ = tts_manager.download_model(vocoder_name)
-    # init synthesizer
-    synthesizer = Synthesizer(
-        model_path, config_path, None, None, vocoder_path, vocoder_config_path,
-    )
+  if len(text) > MAX_TXT_LEN:
+      text = text[:MAX_TXT_LEN]
+      print(f"Input text was cutoff since it went over the {MAX_TXT_LEN} character limit.")
+  print(text, model_name)
+  # download model
+  model_path, config_path, model_item = tts_manager.download_model(f"tts_models/{model_name}")
+  vocoder_name: Optional[str] = model_item["default_vocoder"]
+  # download vocoder
+  vocoder_path = None
+  vocoder_config_path = None
+  if vocoder_name is not None:
+      vocoder_path, vocoder_config_path, _ = tts_manager.download_model(vocoder_name)
+  # init synthesizer
+  synthesizer = Synthesizer(
+      model_path, config_path, None, None, vocoder_path, vocoder_config_path,
+  )
 
-    # synthesize
-    if synthesizer is None:
-        raise NameError("model not found")
-    wavs = synthesizer.tts(text)
+  # synthesize
+  if synthesizer is None:
+      raise NameError("model not found")
+  wavs = synthesizer.tts(text)
 
-    # return output
-    with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as fp:
-        synthesizer.save_wav(wavs, fp)
-        return fp.name
+  # return output
+  with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as fp:
+      synthesizer.save_wav(wavs, fp)
+      return fp.name
 
 def engine(audio, context):
   # Get voice query to text
@@ -140,7 +139,5 @@ with demo:
 
       b1.click(engine, inputs=[in_audio, in_context], outputs=[out_query, out_textbox, out_audio])
       
-  #with gr.Row(): 
-  #  gr.Markdown("![visitor badge](https://visitor-badge.glitch.me/badge?page_id=ysharma_Voice-to-Youtube)")
 
 demo.launch(enable_queue=True, debug=True)
