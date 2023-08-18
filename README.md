@@ -16,6 +16,8 @@ Check out the configuration reference at https://huggingface.co/docs/hub/spaces-
 
 # Voice QA
 
+**Note**: Code is outdated now due to some depreciations. Haven't updated the HF space to make it compatible with latest package versions.
+
 This is the source code of Voice QA app hosted at Huggingface Spaces. It can be accessed by clicking on the following link:
 
 [Voice QA](https://huggingface.co/spaces/jayesh95/Voice-QA)
